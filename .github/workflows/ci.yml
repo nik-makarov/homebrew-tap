@@ -1,0 +1,43 @@
+name: Check formulae
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tap-check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: macos-latest
+    timeout-minutes: 20
+    env:
+      HOMEBREW_NO_AUTO_UPDATE: '1'
+      HOMEBREW_NO_INSTALL_CLEANUP: '1'
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Check and test source formulae
+        run: |
+          test -d Formula
+          brew tap nik-makarov/tap "$GITHUB_WORKSPACE"
+          shopt -s nullglob
+          formulae=(Formula/*.rb)
+          if [ "${#formulae[@]}" -eq 0 ]; then
+            printf 'Bootstrap tap: the first cdd release will add Formula/cdd.rb.\n' >> "$GITHUB_STEP_SUMMARY"
+          fi
+          for file in "${formulae[@]}"; do
+            formula="nik-makarov/tap/$(basename "$file" .rb)"
+            brew trust --formula "$formula"
+            brew style --formula "$formula"
+            brew install --build-from-source "$formula"
+            brew test "$formula"
+            brew audit --strict --online "$formula"
+          done
