@@ -22,3 +22,11 @@
   source requirements, remote branches, or repository settings were changed.
   Paths: `.github/workflows/ci.yml`, `README.md`,
   `docs/development-journal.md`.
+- `2026-11-13T20:04:58Z` — Remove the redundant explicit cdd version so
+  Homebrew infers 0.1.0 from the immutable source URL. Keep the source checksum,
+  build command, and formula tests unchanged. The owner-provided hosted log
+  confirmed successful source installation and formula tests before strict
+  audit reported this one remaining issue. Ruby syntax and diff checks passed
+  locally; the hosted audit was not rerun during local verification. The cdd
+  formula generator was corrected separately for future releases. Paths:
+  `Formula/cdd.rb`, `docs/development-journal.md`.

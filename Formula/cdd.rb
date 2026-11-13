@@ -2,7 +2,6 @@ class Cdd < Formula
   desc "Interactive directory picker with shell integration"
   homepage "https://github.com/nik-makarov/cdd"
   url "https://github.com/nik-makarov/cdd/releases/download/v0.1.0/cdd_v0.1.0_source.tar.gz"
-  version "0.1.0"
   sha256 "9b2ff418064f6028e1c49229b6c2593666325f3203929527ece26e1c8f89c2dd"
   license "MIT"
 
