@@ -1,8 +1,8 @@
 class Cdd < Formula
   desc "Interactive directory picker with shell integration"
   homepage "https://github.com/nik-makarov/cdd"
-  url "https://github.com/nik-makarov/cdd/releases/download/v0.1.2/cdd_v0.1.2_source.tar.gz"
-  sha256 "4aaae1e71a617a8f6f970db8d27467ce2123f51c61baf2b6046eac26bb691045"
+  url "https://github.com/nik-makarov/cdd/releases/download/v0.1.3/cdd_v0.1.3_source.tar.gz"
+  sha256 "8460f16c89bb5ca17f845596518cb6167cf4e53e4e0e17ee59c7aed05d01c70e"
   license "MIT"
 
   depends_on "go" => :build
