@@ -39,8 +39,11 @@ formula after publishing its source archive. See cdd's
 [release setup](https://github.com/nik-makarov/cdd/blob/main/docs/releases.md#initial-setup)
 for the required token and push order.
 
-GitHub Actions checks formula style, builds from source, and runs formula tests
-on macOS. An empty bootstrap tap only checks its directory structure. Hosted
+GitHub Actions refreshes Homebrew and formula metadata before checking style,
+building from source, and running formula tests on macOS. This avoids using an
+outdated Go package from the runner image. Automatic refreshes remain disabled
+for subsequent commands so the explicit update runs once per job.
+An empty bootstrap tap only checks its directory structure. Hosted
 checks and publication must be verified after pushing; local preparation does
 not establish that they have run.
 

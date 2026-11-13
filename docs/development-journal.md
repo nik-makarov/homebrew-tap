@@ -11,3 +11,14 @@
   remote setting changed, branch pushed, or hosted workflow run. Paths:
   `README.md`, `LICENSE`, `.gitignore`, `Formula/.gitkeep`,
   `.github/workflows/ci.yml`, `docs/development-journal.md`.
+- `2026-11-13T19:56:49Z` — Refresh Homebrew and formula metadata explicitly
+  before tapping or checking packages. Keep automatic updates disabled for the
+  remaining commands so the job refreshes once instead of relying on the
+  runner image's stale Go definition. The reported hosted failure used Go
+  1.27.3 for cdd sources requiring 1.27.4; the official Homebrew Go formula
+  already provides 1.27.4. Workflow YAML parsing, bash syntax, and diff checks
+  passed locally. GitHub DNS prevented pulling the bot's formula commit or
+  inspecting/rerunning hosted checks. No release assets, formula checksums,
+  source requirements, remote branches, or repository settings were changed.
+  Paths: `.github/workflows/ci.yml`, `README.md`,
+  `docs/development-journal.md`.
